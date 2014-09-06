@@ -133,7 +133,7 @@
 				<br>
 			</div>			
 			<div class='col-md-4'>
-				 <form action="add-products.php" method="POST">
+				 <form action="add-size.php" method="POST">
                  <input type="submit" value="ADD SIZE" name="add" class="btn btn-success"/>
 				  </form>
 				  <br>

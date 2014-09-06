@@ -11,6 +11,20 @@
 	{
 			$_SESSION['fname'] = $rows['fname'];
 	}
+	
+
+	
+	if(isset($_POST['submit'])){
+					//$id=$newid;
+                    $name = $_POST['name'];
+					
+					$query = "INSERT INTO category SET category='$name'";
+					
+					mysql_query($query) or die(mysql_error());
+					
+                }
+	
+	
 ?>
 <html lang="en">
   <head>
@@ -117,6 +131,7 @@
 					</div> 
                 </div>
 				<br>
+				
               
 				
 				<div class="form-group">
@@ -126,21 +141,37 @@
                 </div>
             </form>
         </div>
+		<table class="table table-striped table-hover" align="center" class="table" width="80%">
+			<thead class="cf">
+      
+                    <th> SIZE </th> 
+					
+					
+                    <th> ACTION </th> </thead>
+					
+					
+                    <?php
+                         $query = "SELECT * FROM category";
+                         $result = mysql_query($query);
+                         
+                         while($row =  mysql_fetch_array($result)){
+                            echo '<tr>';
+                           
+                           
+                            echo '<td>'.$row['category']; ?>
+							
+						 <td><a href="deletecategory.php?id=<?php echo $row['category_id']?>" class="btn btn-danger">Delete</a></td>
+							<?php
+                            echo '</tr>';
+                         }
+
+                     ?>
+                    		
+</table>
         </div><!-- /.row -->      
         </div>
         </div>
-		<?php
-	
-	if(isset($_POST['submit'])){
-					//$id=$newid;
-                    $name = $_POST['name'];
-					
-					$query = "INSERT INTO category SET category='$name'";
-					
-					mysql_query($query) or die(mysql_error());
-					
-                }
-    ?> 
+		
     
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>

@@ -11,6 +11,15 @@
 	{
 			$_SESSION['fname'] = $rows['fname'];
 	}
+	if(isset($_POST['submit'])){
+					//$id=$newid;
+                    $name = $_POST['name'];
+					$category =  $_POST['category'];
+					$query = "INSERT INTO sizes SET size=$name category='$category'";
+					
+					mysql_query($query) or die(mysql_error());
+					
+                }
 ?>
 <html lang="en">
   <head>
@@ -107,13 +116,20 @@
         </div><!-- /.navbar-collapse -->
       </nav>
       <div id="page-wrapper"> 
-                <div class="panel-heading"><b>Add Category</b></div> 
+                <div class="panel-heading"><b>Add Size</b></div> 
 			<br>
 			 <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
 				<div class="form-group"> 
-                    <label for="description" class="col-sm-2 control-label">Category</label> 
+                    <label for="description" class="col-sm-2 control-label">Size</label> 
                     <div class="col-sm-10"> 
                         <input type="name" name="name" class="form-control" id="description" required title="must consist of letters only."> 
+					</div> 
+                </div>
+				<br>
+				<div class="form-group"> 
+                    <label for="description" class="col-sm-2 control-label">Category</label> 
+                    <div class="col-sm-10"> 
+                        <input type="name" name="category" class="form-control" id="description" required title="must consist of letters only."> 
 					</div> 
                 </div>
 				<br>
@@ -121,27 +137,45 @@
 				
 				<div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10"> 
-                        <button type="submit" name="submit" class="btn btn-success">Add Category</button> 
+                        <button type="submit" name="submit" class="btn btn-success">Add Size</button> 
                     </div> 
                 </div>
             </form>
         </div>
+		
+		
+		
+		<table class="table table-striped table-hover" align="center" class="table" width="80%">
+			<thead class="cf">
+      
+                    <th > Size </th> 
+					<th > Actions </th> 
+					
+				    </thead>
+					
+					
+                    <?php
+                         $query = "SELECT * FROM sizes";
+                         $result = mysql_query($query);
+                         
+                         while($row =  mysql_fetch_array($result)){
+                            echo '<tr>';
+                           
+                            echo '<td>'.$row['size'].'</td>';?>
+							 <td><a href="deletesize.php?id=<?php echo $row['size_id']?>" class="btn btn-danger">Delete</a></td>
+                          <?php  echo '</tr>';
+                         }
+
+                     ?>
+                    
+                   
+               
+				
+</table>
         </div><!-- /.row -->      
         </div>
         </div>
-		<?php
 	
-	if(isset($_POST['submit'])){
-					//$id=$newid;
-                    $name = $_POST['name'];
-					
-					$query = "INSERT INTO category SET category='$name'";
-					
-					mysql_query($query) or die(mysql_error());
-					
-                }
-    ?> 
-    
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>

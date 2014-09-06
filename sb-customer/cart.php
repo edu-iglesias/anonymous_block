@@ -87,8 +87,8 @@
     <meta name="author" content="">
 
     <title>Tables - SB Admin</title>
-
     <!-- Bootstrap core CSS -->
+
     <link href="css/style" rel="stylesheet">
     <link href="../css/bootstrap.css" rel="stylesheet">
 
@@ -96,6 +96,19 @@
 	
 	<link href="../css/modern-business.css" rel="stylesheet">
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="css/media/css/jquery.dataTables.css">
+	
+	<script type="text/javascript" language="javascript" src="css/media/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="css/media/js/jquery.dataTables.js"></script>
+	<script >
+
+		$(document).ready(function() {
+			$('#example').dataTable();
+		} );
+
+
+	</script>
   </head>
  <body>
  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -149,22 +162,23 @@
         </div>
         <!-- /.container -->
     </nav>
- <div class="row">
+ <div class="row" >
  <center>
           
             <h2>CART</h2>
-			
-			
-				<table class="table table-striped table-hover" align="center" class="table" width="80%">
-                  <tr class="success">
-                    <th>&nbsp&nbsp&nbspImages <i class="fa fa-sort"></i></th>
-                    <th>Product Name <i class="fa fa-sort"></i></th>
-					<th>Quantity<i class="fa fa-sort"></i></th>
-					 <th>Size <i class="fa fa-sort"></i></th>
-                    <th>Price<i class="fa fa-sort"></i></th>
-					<th>Action<i class="fa fa-sort"></i></th>
+			<div class="panel panel-default">
+				<div class="row" style="padding-left: 50px;padding-right: 50px;">
+				<table id="example" class="table table-striped table-hover " align="center" width="100%">
+                  <thead >
+				   <tr class="success">
+                    <th>&nbsp&nbsp&nbspImages </th>
+                    <th>Product Name</th>
+					<th>Quantity</th>
+					 <th>Size </th>
+                    <th>Price</th>
+					<th>Action</th>
                    
-                  </tr>
+                 </tr>
                 </thead>
                 <tbody>
 				
@@ -204,7 +218,10 @@
                   </tr>
                   <?php } ?>
                 </tbody>
+				
               </table>
+			  </div>
+			  </div>
 			  <div class="form-group">
 			   <div class="container">
 
@@ -238,6 +255,4 @@
                 </div>
            
 		  </body>
-	    <script src="../js/jquery-1.10.2.js"></script>
-    <script src="../js/bootstrap.js"></script>
-    <script src="../js/modern-business.js"></script>
+		   
