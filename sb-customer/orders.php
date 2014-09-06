@@ -29,6 +29,20 @@
 	
 	<link href="../css/modern-business.css" rel="stylesheet">
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="css/media/css/jquery.dataTables.css">
+	
+	<script type="text/javascript" language="javascript" src="css/media/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="css/media/js/jquery.dataTables.js"></script>
+	<script >
+
+		$(document).ready(function() {
+			$('#example').dataTable();
+		} );
+
+
+	</script>
+	
   </head>
  <body>
  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -83,12 +97,12 @@
         <!-- /.container -->
     </nav>
 	
- <div class="row">
+ <div class="row" style="padding-left: 50px; padding-right: 50px;">
  <center>
           
             <h2>ORDERS</h2>
 			 <center>
-	<div class="panel-group" id="accordion">
+	<div class="panel-group" id="accordion" style="padding-left: 50px;padding-right: 50px;">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -109,7 +123,7 @@
   </div>
   </div>
   </center>
-			<table class="table table-striped table-hover"  class="table" width="100%">
+			<table id="example" class="table table-striped table-hover"  class="table" width="100%">
                 <thead>
                   <tr class="success">
 					
@@ -256,6 +270,6 @@
 
         </div>
 		  </body>
-	    <script src="../js/jquery-1.10.2.js"></script>
+	    
     <script src="../js/bootstrap.js"></script>
     <script src="../js/modern-business.js"></script>
