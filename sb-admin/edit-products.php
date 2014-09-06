@@ -145,8 +145,10 @@
 				$result = mysql_query($sql);
 				while ($row = mysql_fetch_array($result)) 
 				{
+
 				
 					$cat = $row['category'];
+
 			?>
 			 <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data"> 
 				<div class="form-group"> 
@@ -169,7 +171,7 @@
 					</div> 
                 </div>
 				<br>
-                <label for="select" class="col-lg-2 control-label">Category</label>
+ <label for="select" class="col-lg-2 control-label">Category</label>
       <div class="col-lg-10">
         <select class="form-control" name="category">
 		<?php
@@ -188,6 +190,13 @@
 		
         <br>
       </div>
+
+                <div class="form-group"> 
+                    <label for="price" class="col-sm-2 control-label">category</label> 
+                    <div class="col-sm-10"> 
+                        <input type="text" name="category" class="form-control" id="price" value="<?php echo $row['category']; ?>" required> 
+                    </div> 
+                </div>
 				<br>
 				   <div class="form-group"> 
                     <label for="price" class="col-sm-2 control-label">Image</label> 

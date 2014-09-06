@@ -159,10 +159,13 @@
                   <tr class="success">
                     <th>&nbsp&nbsp&nbspImages <i class="fa fa-sort"></i></th>
                     <th>Product Name <i class="fa fa-sort"></i></th>
+
 					<th>Size <i class="fa fa-sort"></i></th>
 					<th>Quantity<i class="fa fa-sort"></i></th>
                     <th>Price<i class="fa fa-sort"></i></th>
 					
+
+
                    
                   </tr>
                 </thead>

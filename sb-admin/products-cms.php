@@ -115,6 +115,7 @@
                 <div class="panel-heading">PRODUCTS</div> 
 			
 		 <br>
+
 		 <div class='row'>
 		 <center>
 			<div class='col-md-4'>

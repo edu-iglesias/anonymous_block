@@ -150,6 +150,7 @@
         <br>
       </div>
     </div>
+
 				<br>
 				   <div class="form-group"> 
                     <label for="price" class="col-sm-2 control-label">Image</label> 

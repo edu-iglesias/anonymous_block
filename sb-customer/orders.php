@@ -162,8 +162,9 @@
 					?>
 				
                   <tr>
+
 				  <td ><a href="orderinfo.php?id=<?php echo $id ?>"><?php echo "Order ". $orderid ?></a> </td>
-                   
+              
                     <td  ><?php echo  $date ?></td>
                     <td ><?php echo "Php " . $price ?></td>
                     <td >
