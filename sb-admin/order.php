@@ -29,6 +29,13 @@
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+
+    <!-- Datepicker -->
+
+
+    <link href="../datepicker/foundation-datepicker.css" rel="stylesheet">
+     <script src="../datepicker/foundation-datepicker.js"></script>
+   
   </head>
 
   <body>
@@ -198,8 +205,9 @@
 					 <th>Customer Name </th>  
 					<th>Order Details </th>   
 					
-                    <center> <th >TRANSACTION NUMBER </th> </center>
-					<th>ACTION</th> 
+                    <center> <th >Transaction No. </th> </center>
+                    <center> <th >Expiration Date </th> </center>
+					<th>Action</th> 
                     <?php
 				
 				$qqquerry = mysql_query("SELECT * FROM product_orders where status='1'");
@@ -229,11 +237,16 @@
                         
 							
 								echo '<td>'.$trans.'</td>';
-							
+								echo "<td><div class='input-daterange input-group' id='datepicker' data-date='{{ date('Y-m-d') }}T' data-date-format='yyyy-mm-dd'><input type='text' class='form-control' name='end' value='' id='dpd2' style='text-align: center'  placeholder='Click to select date' onchange='checkInput(this.value,this.id)'></div></td>";
 							?>
 							
 							<td>
 						<form action="paid.php?id=<?php echo $id?>" method="POST">
+							<div class="form-group col-md-9">
+				            <div class="input-daterange input-group" id="datepicker" data-date="{{ date('Y-m-d') }}T" data-date-format="yyyy-mm-dd" style="display:none">
+				                <input type="text" class="form-control" name="start" value="" id="dpd1" style="text-align: center" placeholder="Click to select date" onchange="checkInput(this.value,this.id)">
+				            </div>
+        </div>
 						
                  <input type="submit" value="PAID" name="submit" class="btn btn-success"/>
 				 <div class="modal">
@@ -404,11 +417,72 @@
     <script src="js/tablesorter/jquery.tablesorter.js"></script>
     <script src="js/tablesorter/tables.js"></script>
     <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
-	<script src="js/flot/jquery.flot.js"></script>
+	<!-- <script src="js/flot/jquery.flot.js"></script>
 	<script src="js/flot/jquery.flot.tooltip.min.js"></script>
 	<script src="js/flot/jquery.flot.resize.js"></script>
 	<script src="js/flot/jquery.flot.pie.js"></script>
-	<script src="js/flot/chart-data-flot.js"></script>
+	<script src="js/flot/chart-data-flot.js"></script> -->
+	<script src="../datepicker/foundation-datepicker.js"></script>
 
   </body>
 </html>
+
+<script>
+    $(function () {
+        // implementation of disabled form fields
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate() + 1, 0, 0, 0, 0);
+                
+        var checkin = $('#dpd1').fdatepicker(
+        {
+            onRender: function (date) 
+            {
+                return date.valueOf() > now.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+        if (ev.date.valueOf() > checkout.date.valueOf()) 
+        {
+            var newDate = new Date(ev.date)
+            newDate.setDate(newDate.getDate() + 1);
+            checkout.update(newDate);
+        }
+            checkin.hide();
+            $('#dpd2')[0].focus();
+            }).data('datepicker');
+                
+        var checkout = $('#dpd2').fdatepicker({
+            onRender: function (date) {
+            // return date.valueOf() < checkin.date.valueOf() ? 'disabled' : '';
+                if(date.valueOf() < checkin.date.valueOf())
+                {
+                    return 'disabled';
+                }
+
+            }
+        }).on('changeDate', function (ev) {
+            checkout.hide();
+        }).data('datepicker');
+    });
+
+    function checkInput(value,inputId)
+    {
+
+        var dateInput = new Date(value);
+        var dateTodayTemp = document.getElementById('date_today').value;
+        var dateToday = new Date(dateTodayTemp);
+        if(dateInput > dateToday)
+        {
+            document.getElementById('invalidDate').style.display = 'block';
+            document.getElementById("dpd1").value = dateTodayTemp;
+            document.getElementById("dpd2").value = dateTodayTemp;
+
+        }
+    }
+
+    function hideAlert()
+    {
+        document.getElementById('invalidDate').style.display = 'none';
+    }
+</script>
+
+ 
