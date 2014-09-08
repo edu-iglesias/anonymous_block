@@ -38,6 +38,19 @@
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/media/css/jquery.dataTables.css">
+	
+	<script type="text/javascript" language="javascript" src="css/media/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="css/media/js/jquery.dataTables.js"></script>
+	<script>
+
+		$(document).ready(function() {
+			$('#examples').dataTable();
+		} );
+
+
+	</script>
   </head>
 
   <body>
@@ -118,6 +131,9 @@
       <div id="page-wrapper"> 
                 <div class="panel-heading"><b>Add Size</b></div> 
 			<br>
+			
+			
+			
 			 <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
 				<div class="form-group"> 
                     <label for="description" class="col-sm-2 control-label">Size</label> 
@@ -126,12 +142,27 @@
 					</div> 
                 </div>
 				<br>
-				<div class="form-group"> 
-                    <label for="description" class="col-sm-2 control-label">Category</label> 
-                    <div class="col-sm-10"> 
-                        <input type="name" name="category" class="form-control" id="description" required title="must consist of letters only."> 
-					</div> 
-                </div>
+			<div class="form-group">
+			   
+      <label for="select" class="col-lg-2 control-label">Category</label>
+      <div class="col-lg-10">
+        <select class="form-control" name="category">
+		<?php
+		$queerry = mysql_query("SELECT * FROM category");
+						while($rowsssss = mysql_fetch_assoc($queerry))
+					{
+							$cat_id = $rowsssss['category_id'];
+							$category = $rowsssss['category'];
+							?>
+							
+          <option value="<?php echo $cat_id; ?>" name="category"><?php echo $category?></option>
+        
+		<?php }?>
+		</select>
+		
+        <br>
+      </div>
+    </div>
 				<br>
               
 				
@@ -141,17 +172,16 @@
                     </div> 
                 </div>
             </form>
-        </div>
+       
 		
 		
-		
-		<table class="table table-striped table-hover" align="center" class="table" width="80%">
+		<table id="examples" class="table table-striped table-hover"  class="table" width="100%">
 			<thead class="cf">
-      
+				 <tr class="success">
                     <th > Size </th> 
 					<th > Actions </th> 
-					
-				    </thead>
+				</tr>
+		  </thead>
 					
 					
                     <?php
@@ -168,30 +198,16 @@
 
                      ?>
                     
-                   
-               
 				
 </table>
+</div>
         </div><!-- /.row -->      
         </div>
         </div>
 	
     <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
+   
     <script src="js/bootstrap.js"></script>
-
-    <!-- Page Specific Plugins -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-    <script src="js/morris/chart-data-morris.js"></script>
-    <script src="js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="js/tablesorter/tables.js"></script>
-    <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
-	<script src="js/flot/jquery.flot.js"></script>
-	<script src="js/flot/jquery.flot.tooltip.min.js"></script>
-	<script src="js/flot/jquery.flot.resize.js"></script>
-	<script src="js/flot/jquery.flot.pie.js"></script>
-	<script src="js/flot/chart-data-flot.js"></script>
-
+	
   </body>
 </html>

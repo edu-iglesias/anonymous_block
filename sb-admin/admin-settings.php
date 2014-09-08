@@ -25,13 +25,11 @@
                     $firstname = $_POST['fname'];
                     $lastname = $_POST['lname'];
                     $email = $_POST['email'];
-					$pass = $_POST['password'];
 					$curpass = $_POST['currentpass'];
 					$newpass = $_POST['newpass'];
-					$repass = $_POST['repass'];
+					$repass = $_POST['reenterpass'];
                     $address = $_POST['address'];  
                     $contactno = $_POST['contactno'];
-				
 				
 				
 				
@@ -42,29 +40,29 @@
 					$pword = $row['password'];
 				}	
 					
-					if(empty($pass)){
+					if($curpass == null){
 						$password = $pword;
 					
 					}
-					else{
-					if($pword == $curpass){
-					if($newpass == $repass){
+					else if($curpass != null){
 					
-					
-					
+						if($pword == sha1($curpass)){
+							if($newpass == $repass){
+							
+								$password = $newpass;
+							}else{
+							header("Location: newpass.php");
+							}
+						}else{
+						header("Location: curpass.php");
+						}
+						
+					}else{
+						header("Location: haha.php");
 					}
 					
-				
-				}
-					
-					
-					
-					
-						$password = $pass;
-					
-					}
-					$passsword = sha1($password);
-					$query = "UPDATE accounts set lname='$lastname',fname='$firstname',email='$email',password='$passsword',address='$address',contact_no='$contactno' WHERE user_id = $id";
+					$password = sha1($password);
+					$query = "UPDATE accounts set lname='$lastname',fname='$firstname',email='$email',password='$password',address='$address',contact_no='$contactno' WHERE user_id = $id";
 					
 					mysql_query($query) or die(mysql_error());
 					

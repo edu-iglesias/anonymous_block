@@ -1,16 +1,8 @@
 <!DOCTYPE html>
 <?php 
-	include('../dbconnect.php');
-	session_start();
-	if(!isset($_SESSION['accessgranted'])){
-		header("location:../login.php");
-	}
-	$id = $_SESSION['userid'];
-	$querry = mysql_query("SELECT * FROM accounts where user_id = $id");
-	while($rows = mysql_fetch_assoc($querry))
-	{
-			$_SESSION['fname'] = $rows['fname'];
-	}
+	include('dbconnect.php');
+	$id = $_REQUEST['id'];
+	
 ?>
 <html lang="en">
 
@@ -21,20 +13,18 @@
     <meta name="author" content="">
 
     <title>Everlasting sew-n-wearhaus</title>
-
-    <!-- Bootstrap core CSS -->
-	   <link href="css/style" rel="stylesheet">
-    <link href="../css/bootstrap.css" rel="stylesheet">
-
-    <!-- Add custom CSS here -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/sl-slide.css">
 	
-	<link href="../css/modern-business.css" rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/modern-business.css" rel="stylesheet">
+
 </head>
 
 <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -44,7 +34,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-                <a class="navbar-brand" href="index.php">Everlasting sew-n-wearhaus</a>
+                
+				<a class="navbar-brand" href="index.php">Everlasting sew-n-wearhaus</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -54,7 +45,7 @@
                     </li>
                     <li class="dropdown">
                         <a href="productgallery.php" class="dropdown-toggle" data-toggle="dropdown">Product Gallery <b class="caret"></b></a>
-                         <ul class="dropdown-menu">
+                        <ul class="dropdown-menu">
 						<?php 
 							$querryy = mysql_query("SELECT * FROM  category");
 						while($rowes = mysql_fetch_assoc($querryy))
@@ -68,17 +59,13 @@
 							<?php } ?>
                         </ul>
                     </li>
-<li class="dropdown ">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo $_SESSION['fname'];?><b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="editprofile.php"><i class="fa fa-user"></i>Edit Profile</a></li>
-                <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
-                <li><a href="orders.php"><i class="fa fa-table"></i> Orders</a></li>
-				 <li><a href="cart.php"><i class="fa fa-table"></i> Cart</a></li>
-				<li class="divider"></li>
-                <li><a href="../logout.php"><i class="fa fa-power-off"></i> Log Out</a></li>
-              </ul>
-            </li>
+					<li class="dropdown">
+                        <a href="login.php" >Login </a>
+                        
+                    </li>
+                </ul>
+                    </li>
+					
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -86,10 +73,7 @@
         <!-- /.container -->
     </nav>
 
-    
-        
-
-      <div class="row text-center">
+    <div class="row text-center">
 	<?php 
 				$querry = mysql_query("SELECT * FROM category where category_id = $id");
 				while($rows = mysql_fetch_assoc($querry))
@@ -127,14 +111,21 @@
 			<?php } ?>
             
         </div>
-
+ 
+ 
+            <div class="span1">
+                <a id="gototop" class="gototop pull-right" href="#"><i class="icon-angle-up"></i></a>
+            </div>
  
  
     <!-- /.section -->
-	
-    <script src="../js/jquery-1.10.2.js"></script>
-    <script src="../js/bootstrap.js"></script>
-    <script src="../js/modern-business.js"></script>
+	<script src="js/vendor/jquery-1.9.1.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/jquery-1.10.2.js"></script>
+   <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/modern-business.js"></script>
 
 </body>
 

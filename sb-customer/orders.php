@@ -66,16 +66,17 @@
                     <li class="dropdown">
                         <a href="productgallery.php" class="dropdown-toggle" data-toggle="dropdown">Product Gallery <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="poloproduct.php">1 Polo</a>
+						<?php 
+							$querryy = mysql_query("SELECT * FROM  category");
+						while($rowes = mysql_fetch_assoc($querryy))
+						{	
+							
+							
+						?>
+                            <li><a href="product.php?id=<?php echo $rowes["category_id"]; ?>" ><?php echo $rowes["category"]; ?></a>
                             </li>
-                            <li><a href="pantsproduct.php">2 Pants</a>
-                            </li>
-                            <li><a href="blouseproduct.php">3 Blouse</a>
-                            </li>
-                            <li><a href="skirtproduct.php">4 Skirt</a>
-                            </li>
-                            <li><a href="peproduct.php">5 PE T-Shirt</a>
-                            </li>
+                          
+							<?php } ?>
                         </ul>
                     </li>
 

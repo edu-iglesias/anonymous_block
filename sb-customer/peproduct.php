@@ -55,16 +55,17 @@
                     <li class="dropdown">
                         <a href="productgallery.php" class="dropdown-toggle" data-toggle="dropdown">Product Gallery <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="poloproduct.php">1 Polo</a>
+						<?php 
+							$querryy = mysql_query("SELECT * FROM  category");
+						while($rowes = mysql_fetch_assoc($querryy))
+						{	
+							
+							
+						?>
+                            <li><a href="product.php?id=<?php echo $rowes["category_id"]; ?>" ><?php echo $rowes["category"]; ?></a>
                             </li>
-                            <li><a href="pantsproduct.php">2 Pants</a>
-                            </li>
-                            <li><a href="blouseproduct.php">3 Blouse</a>
-                            </li>
-                            <li><a href="skirtproduct.php">4 Skirt</a>
-                            </li>
-                            <li><a href="peproduct.php">5 PE T-Shirt</a>
-                            </li>
+                          
+							<?php } ?>
                         </ul>
                     </li>
 
@@ -89,11 +90,17 @@
     
         
 
-    <div class="row text-center">
-<br><br><h2>PE</h2><br><br><br>
+        <div class="row text-center">
+	<?php 
+				$querry = mysql_query("SELECT * FROM category where category_id = $id");
+				while($rows = mysql_fetch_assoc($querry))
+				{
+	?> 
+	<br><br><h2><?php echo $rows['category']?> </h2><br><br><br>
+	<?php } ?>
 
 			<?php 
-				$querry = mysql_query("SELECT * FROM products where category=5");
+				$querry = mysql_query("SELECT * FROM products where category='$id'");
 				while($rows = mysql_fetch_assoc($querry))
 				{
 						$id = $rows['id'];
@@ -103,22 +110,25 @@
 						
 			?>
             <div class="col-lg-3 col-md-6 hero-feature">
-                <div class="thumbnail">
+                <div class="thumbnail" >
+				
 					<div>
+					
                     <img src="image/products/<?php echo $image; ?>" alt="" width="225px" height="225px">
                     </div>
 					<div class="caption">
                         <h3><?php echo $name;?></h3>
                         <p><?php echo "Php " . $price;?></p>
 						
-                    <p> <a href="view.php?id=<?php echo $id ?>" class="btn btn-default">More Info</a>
-                        </p>
+                   
                     </div>
+					
                 </div>
             </div>
 			<?php } ?>
             
         </div>
+
  
  
  

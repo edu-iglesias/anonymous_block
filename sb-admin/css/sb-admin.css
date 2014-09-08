@@ -107,7 +107,7 @@ table.tablesorter thead tr th:hover {
 	height: 100%;
 	border-radius: 0;
 	border: none;
-	background-color: #2dcc70;
+	background-color: #006600;
 	overflow-y: auto;
   }
 
@@ -143,7 +143,7 @@ table.tablesorter thead tr th:hover {
 
   .navbar-inverse .navbar-nav>li>a:hover,
   .navbar-inverse .navbar-nav>li>a:focus {
-	background-color: #89be3d;
+	background-color: #080808;
   }
 
   /* Nav Messages */

@@ -29,6 +29,28 @@
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/media/css/jquery.dataTables.css">
+	
+	<script type="text/javascript" language="javascript" src="css/media/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="css/media/js/jquery.dataTables.js"></script>
+	<script>
+
+		$(document).ready(function() {
+			$('#examples1').dataTable();
+		} );
+		$(document).ready(function() {
+			$('#examples2').dataTable();
+		} );
+		$(document).ready(function() {
+			$('#examples3').dataTable();
+		} );
+		$(document).ready(function() {
+			$('#examples4').dataTable();
+		} );
+		
+	</script>
+	
   </head>
 
   <body>
@@ -135,14 +157,14 @@
                        <div class="panel panel-default"> 
                          <div class="panel-heading">CUSTOMER ORDERS</div> 
 			<br>
-			<table class="table table-hover" align="right" width="100%" >
-
-			
-					<th align="center">Customer Name <i class="fa fa-sort"></i></th>
-                    <th align="center">Product Information<i class="fa fa-sort"></i></th>
-                    <center> <th colspan="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspACTION </th> </center>
-				
-				
+			<table id="examples1" class="table table-hover" class="table" align="right" width="100%" >
+			<tr class = "success">
+				<thead class="cf">
+					<th align="center">Customer Name</th>
+                    <th align="center">Product Information</th>
+                    <th colspan="2">ACTION </th> 
+				</thead>
+			</tr>
 				     <?php
 				
 			$q = mysql_query("SELECT * FROM product_orders where status = 0");
@@ -183,23 +205,21 @@
                    
                 
 				
-</table></div>
+</table>
+</div>
                     </div>
                     <div class="tab-pane fade" id="service-two">
                         
                         <div class="panel panel-default"> 
                 <div class="panel-heading">ACCEPTED ORDERS</div> 
 			<br>
-			<table class="table table-hover" align="right" width="100%" >
-
-			
-					
-                   
+			<table id="examples2" class="table table-striped table-hover"  class="table" width="100%">	
+                   <thead>
 					 <th>Customer Name </th>  
 					<th>Order Details </th>   
-					
                     <center> <th >TRANSACTION NUMBER </th> </center>
 					<th>ACTION</th> 
+					</thead>
                     <?php
 				
 				$qqquerry = mysql_query("SELECT * FROM product_orders where status='1'");
@@ -270,15 +290,13 @@
                         <div class="panel panel-default"> 
                 <div class="panel-heading">PAID ORDERS</div> 
 			<br>
-			<table class="table table-hover" align="right" width="100%" >
-
-			
-					
-                    
+			<table id="examples3" class="table table-hover" align="right" width="100%" >
+                    <thead>
 					 <th>Customer Name </th>  
 					<th>Order Details </th>   
 					<th>Release Date </th>
 					<th>ACTION</th> 
+					</thead>
                     <?php
 				
 				$querrry = mysql_query("SELECT * FROM product_orders where status='2'");
@@ -337,12 +355,10 @@
                         <div class="panel panel-default"> 
                 <div class="panel-heading">Order history</div> 
 			<br>
-			<table class="table table-hover" align="right" width="100%" >
-
-			
-					
+			<table id="examples4" class="table table-hover" align="right" width="100%" >
+				<thead>
                     <th>NAME </th>  
-					
+				</thead>
                     <?php
 				
 				$queerry = mysql_query("SELECT * FROM product_orders where status='3'");
@@ -394,21 +410,8 @@
         </div>
     
     <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
+   
     <script src="js/bootstrap.js"></script>
-
-    <!-- Page Specific Plugins -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-    <script src="js/morris/chart-data-morris.js"></script>
-    <script src="js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="js/tablesorter/tables.js"></script>
-    <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
-	<script src="js/flot/jquery.flot.js"></script>
-	<script src="js/flot/jquery.flot.tooltip.min.js"></script>
-	<script src="js/flot/jquery.flot.resize.js"></script>
-	<script src="js/flot/jquery.flot.pie.js"></script>
-	<script src="js/flot/chart-data-flot.js"></script>
 
   </body>
 </html>

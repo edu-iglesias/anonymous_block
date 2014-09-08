@@ -15,26 +15,55 @@
 					
                     $firstname = $_POST['fname'];
                     $lastname = $_POST['lname'];
-                    
-					$password = $_POST['pass'];
+					$curpass = $_POST['currentpass'];
+					$newpass = $_POST['newpass'];
+					$repass = $_POST['reenterpass'];
                     $address = $_POST['address'];  
                     $contactno = $_POST['contactno'];
-					$passs = sha1($password);
+					$email = $_POST['email'];
 					$errorCheck = 0;
 					$fnameCheck;
 					$lnameCheck;
 					
 					$passwordCheck;
 					$success;
+					$sql = "SELECT * FROM accounts WHERE user_id = $id";
+				$result = mysql_query($sql);
+				while ($row = mysql_fetch_array($result)) 
+				{
+					$pword = $row['password'];
+				}	
 					
+    
 					if ($errorCheck == 0) {
-            $_SESSION['pass'] = mysql_real_escape_string(trim($_POST["pass"], "/\'\"\;"));
+					
+					if($curpass == null){
+						$password = $pword;
+					
+					}
+					else if($curpass != null){
+					
+						if($pword == sha1($curpass)){
+							if($newpass == $repass){
+							
+								$password = $newpass;
+							}else{
+							header("Location: newpass.php");
+							}
+						}else{
+						header("Location: curpass.php");
+						}
+						
+					}else{
+						header("Location: haha.php");
+					}
+            $_SESSION['password'] = mysql_real_escape_string(trim($password, "/\'\"\;"));
             $_SESSION['lastname'] = mysql_real_escape_string(trim($_POST["lname"], "/\'\"\;"));
             $_SESSION['firstname'] = mysql_real_escape_string(trim($_POST["fname"], "/\'\"\;"));
            
-            $passs = sha1($password);
+            $password = sha1($password);
 		
-					$query = "UPDATE accounts set lname='$lastname',fname='$firstname',password='$passs',address='$address',contact_no='$contactno' WHERE user_id = $id";
+					$query = "UPDATE accounts set lname='$lastname',fname='$firstname',password='$password',address='$address',contact_no='$contactno' WHERE user_id = $id";
                     mysql_query($query) or die(mysql_error());
 					?><br>
 					 <div class="alert alert-dismissable alert-success">
@@ -95,17 +124,18 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Product Gallery <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="portfolio-1-col.html">1 Polo</a>
+                         <ul class="dropdown-menu">
+						<?php 
+							$querryy = mysql_query("SELECT * FROM  category");
+						while($rowes = mysql_fetch_assoc($querryy))
+						{	
+							
+							
+						?>
+                            <li><a href="product.php?id=<?php echo $rowes["category_id"]; ?>" ><?php echo $rowes["category"]; ?></a>
                             </li>
-                            <li><a href="portfolio-2-col.html">2 Pants</a>
-                            </li>
-                            <li><a href="portfolio-3-col.html">3 Blouse</a>
-                            </li>
-                            <li><a href="portfolio-4-col.html">4 Skirt</a>
-                            </li>
-                            <li><a href="portfolio-item.html">5 PE T-Shirt</a>
-                            </li>
+                          
+							<?php } ?>
                         </ul>
                     </li>
 
@@ -150,9 +180,48 @@
                 </div>
 				<br>
 				<div class="form-group"> 
+                    <label for="description" class="col-sm-2 control-label">Email</label> 
+                    <div class="col-sm-10"> 
+                        <input type="description" name="email" class="form-control" id="description" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"title="Please enter a valid email." required value="<?php echo $row['email']; ?>"> 
+					</div> 
+                </div>
+				<br>
+					<div class="form-group"> 
                     <label for="description" class="col-sm-2 control-label">Password</label> 
                     <div class="col-sm-10"> 
-                        <input type="password" name="pass" class="form-control" id="description" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" value="<?php echo $row['password']; ?>"> 
+                        <div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        Change Password
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse out">
+      <div class="panel-body">
+		 <div class="form-group"> 
+                    <label for="price" class="col-sm-2 control-label">Current</label> 
+                    <div class="col-sm-10"> 
+                        <input type="text" name="currentpass" class="form-control"  value=""> 
+                    </div> 
+                </div>
+		  <div class="form-group"> 
+                    <label for="price" class="col-sm-2 control-label">New</label> 
+                    <div class="col-sm-10"> 
+                        <input type="text" name="newpass" class="form-control" value=""> 
+                    </div> 
+                </div> 
+		    <div class="form-group"> 
+                    <label for="price" class="col-sm-2 control-label">Re-enter New</label> 
+                    <div class="col-sm-10"> 
+                        <input type="text" name="reenterpass" class="form-control"  value=""> 
+                    </div> 
+                </div>
+	  </div>
+    </div>
+  </div>
+  </div>
                     </div> 
                 </div>
 				<br>

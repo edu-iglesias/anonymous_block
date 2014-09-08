@@ -151,6 +151,7 @@
 						$image = $rows['image'];
 						
 			?>
+			
             <div class="col-lg-3 col-md-6 hero-feature">
 			
 			<br><br><br>

@@ -43,6 +43,19 @@
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/media/css/jquery.dataTables.css">
+	
+	<script type="text/javascript" language="javascript" src="css/media/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="css/media/js/jquery.dataTables.js"></script>
+	<script >
+
+		$(document).ready(function() {
+			$('#example').dataTable();
+		} );
+
+
+	</script>
   </head>
 
   <body>
@@ -141,15 +154,15 @@
                 </div>
             </form>
         </div>
-		<table class="table table-striped table-hover" align="center" class="table" width="80%">
+		<table id="example" class="table table-striped table-hover"  class="table" width="100%">
 			<thead class="cf">
-      
+				<tr class="success">
                     <th> SIZE </th> 
 					
 					
                     <th> ACTION </th> </thead>
 					
-					
+					</tr>
                     <?php
                          $query = "SELECT * FROM category";
                          $result = mysql_query($query);
@@ -160,7 +173,7 @@
                            
                             echo '<td>'.$row['category']; ?>
 							
-						 <td><a href="deletecategory.php?id=<?php echo $row['category_id']?>" class="btn btn-danger">Delete</a></td>
+						<td><a href="deletecategory.php?id=<?php echo $row['category_id']?>" class="btn btn-danger">Delete</a></td>
 							<?php
                             echo '</tr>';
                          }
@@ -174,21 +187,9 @@
 		
     
     <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
+    
     <script src="js/bootstrap.js"></script>
 
-    <!-- Page Specific Plugins -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-    <script src="js/morris/chart-data-morris.js"></script>
-    <script src="js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="js/tablesorter/tables.js"></script>
-    <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
-	<script src="js/flot/jquery.flot.js"></script>
-	<script src="js/flot/jquery.flot.tooltip.min.js"></script>
-	<script src="js/flot/jquery.flot.resize.js"></script>
-	<script src="js/flot/jquery.flot.pie.js"></script>
-	<script src="js/flot/chart-data-flot.js"></script>
-
+   
   </body>
 </html>
