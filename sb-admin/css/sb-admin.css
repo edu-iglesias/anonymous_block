@@ -107,8 +107,11 @@ table.tablesorter thead tr th:hover {
 	height: 100%;
 	border-radius: 0;
 	border: none;
-	background-color: #006600;
+	background-color: #2d7f37;
 	overflow-y: auto;
+	border-top-width:1px;
+   border-top-color:White;
+   border-top-style: solid;
   }
 
   /* Bootstrap Default Overrides - Customized Dropdowns for the Side Nav */
